@@ -5,8 +5,8 @@
 
 This project is a ClojureScript starter project, complete with:
 
-1. A bare-bones `index.html` web page which loads a compiled [React](https://reactjs.org/) component (originates as ClojureScript).
-1. A bare-bones suite of [Speclj](https://github.com/slagyr/speclj) specs/tests!
+1. A bare-bones `index.html` web page which loads a compiled [React](https://reactjs.org/) component (which originated as ClojureScript).
+1. A bare-bones suite of [Speclj](https://github.com/slagyr/speclj) specs/tests! Once cloned, the repo is ready for you to write the next test.
 
 The Speclj specs are written in [Clojure](https://clojure.org)[(Script)](https://clojurescript.org/) are compiled (alongside the production code they exercise) to [Javascript](https://developer.mozilla.org/en-US/docs/Web/JavaScript) and are then executed via [PhantomJS](https://phantomjs.org/) from the command-line or the web-browser console.
 
