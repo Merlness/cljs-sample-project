@@ -8,10 +8,14 @@ This project is a ClojureScript starter project, complete with:
 1. A bare-bones `index.html` web page which loads a compiled [React](https://reactjs.org/) component (which originated as ClojureScript).
 1. A bare-bones suite of [Speclj](https://github.com/slagyr/speclj) specs/tests! Once cloned, the repo is ready for you to write the next test.
 
-The Speclj specs are written in [Clojure](https://clojure.org)[(Script)](https://clojurescript.org/) are compiled (alongside the production code they exercise) to [Javascript](https://developer.mozilla.org/en-US/docs/Web/JavaScript) and are then executed via [PhantomJS](https://phantomjs.org/) from the command-line or the web-browser console.
+The Speclj specs/tests are:
+
+1. Written in [Clojure](https://clojure.org)[(Script)](https://clojurescript.org/)
+2. Compiled (alongside the production code they exercise) to [Javascript](https://developer.mozilla.org/en-US/docs/Web/JavaScript) 
+3. Executed via [PhantomJS](https://phantomjs.org/) from the command-line (or the web-browser console).
 
 
-## Why does it exist?
+## Why does this repository exist?
 
 Much of the value of this repository is in the 'glue' code that stitches all the moving parts and concepts together. There just didn't seem to be any other up-to-date and working example of this combination of utilities, so we built it. You're very welcome.
 
@@ -24,7 +28,7 @@ Much of the value of this repository is in the 'glue' code that stitches all the
 1. [Perserverence](https://www.dictionary.com/browse/perseverance)
 
 
-## How do I use it?
+## How do I use this repository?
 
 - Step 1: Fork/clone the repo and run the commands below to make sure everything is working.
 - Step 2: Write tests and make changes until your project is complete.
@@ -42,7 +46,7 @@ Much of the value of this repository is in the 'glue' code that stitches all the
 1. `lein clean` - Deletes all compiled artifacts.
 
 
-## What is the purpose of each file?
+## What is the purpose of each file in the repository?
 
 1. `/README.md` - You're looking at it.
 1. `/LICENSE.md` - The open-source license file.
