@@ -48,26 +48,39 @@ Much of the value of this repository is in the 'glue' code that stitches all the
 
 ## What is the purpose of each file in the repository?
 
-1. `/README.md` - You're looking at it.
-1. `/LICENSE.md` - The open-source license file.
-1. `/.gitignore` - Listing of files that git should ignore (like project files and compiled artifacts).
-1. `/project.clj` - The project file interpreted by the [Leiningen](https://leiningen.org/) build tool.
+1. `/README.md`
+	- You're looking at it.
+1. `/LICENSE.md`
+	- The open-source license file.
+1. `/.gitignore`
+	- Listing of files that git should ignore (like project files and compiled artifacts).
+1. `/project.clj`
+	- The project file interpreted by the [Leiningen](https://leiningen.org/) build tool.
 	- Declares project metadata, dependencies, plugins, and entrypoints.
 	- The `"cljs"` key within the `:aliases` structure is what provides the `lein` commands above.
-1. `/resources/config/cljs.edn` - configuration profiles for compiling ClojureScript
+1. `/resources/config/cljs.edn`
+	- configuration profiles for compiling ClojureScript
 	- The `:development` and `:production` keys correspond to the `lein` command arguments above.
-1. `/resources/public/cljs` - Will be created and populated with compiled artifacts upon running the `lein` commands above.
-1. `/resources/public/specs/speclj.js` - This script is what enables the 'auto' test command above. It detects code that has been updated and runs only the associated specs.
-1. `/resources/public/specs/specs.html` - references test (development) code compiled to javascript, a page from which to run the tests in the browser's console. Load this file in a web browser after running one of the `development` commands above.
-1. `/resources/public/index.html` - references production code compiled javascript, the page on which the sample-project is hosted. Load this file in a web browser after running one of the `production` commands above.
-1. `/spec/cljs/runner/cljs.clj` - The entry point for all `lein cljs` commands above.
+1. `/resources/public/cljs`
+	- Will be created and populated with compiled artifacts upon running the `lein` commands above.
+1. `/resources/public/specs/speclj.js`
+	- This script is what enables the 'auto' test command above. It detects code that has been updated and runs only the associated specs.
+1. `/resources/public/specs/specs.html`
+	- references test (development) code compiled to javascript, a page from which to run the tests in the browser's console. Load this file in a web browser after running one of the `development` commands above.
+1. `/resources/public/index.html`
+	- references production code compiled javascript, the page on which the sample-project is hosted. Load this file in a web browser after running one of the `production` commands above.
+1. `/spec/cljs/runner/cljs.clj`
+	- The entry point for all `lein cljs` commands above.
 	- Parses command line flags that come after `lein cljs`.
 	- Reads configuration structure provided by `/resources/config/cljs.edn`.
 	- Invokes the ClojureScript compiler library functions (from `cljs.build.api` namespace).
-1. `/spec/cljs/sample_project/core_spec.cljs` - Actual test code!
+1. `/spec/cljs/sample_project/core_spec.cljs`
+	- Actual test code!
 	- Notice the use of `:require-macros` within the `(ns ...)` form, which is required when using speclj from ClojureScript (`.cljs`).
-1. `/src/cljs/sample_project/components.cljs` - A sample (and simple) reagent component
-1. `/src/cljs/sample_project/core.cljs` - The main entrypoint providing reagent/react components for the rendered web page.
+1. `/src/cljs/sample_project/components.cljs`
+	- A sample (and simple) reagent component
+1. `/src/cljs/sample_project/core.cljs`
+	- The main entrypoint providing reagent/react components for the rendered web page.
 
 
 ## TODO
