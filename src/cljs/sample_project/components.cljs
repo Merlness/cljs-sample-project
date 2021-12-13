@@ -1,8 +1,4 @@
-(ns sample-project.components
-  (:require [goog.dom :as gdom]
-            [reagent.core :as reagent]
-            [reagent.dom :as rdom]))
+(ns sample-project.components)
 
 (defn hello-world []
-  [:div
-   [:h1 "Hello, world!"]])
+  [:h1 "Hello, world!"])
