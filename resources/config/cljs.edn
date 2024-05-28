@@ -1,4 +1,51 @@
-{:run-cmd     "phantomjs resources/public/specs/speclj.js"
+{
+ :ns-prefix "sample_project"  ;; required - only namespaces with these prefix will trigger recompile
+ ; :env-keys ["property.name" "ENV_NAME"] ;; optional - environment keys for the environment (development, production, ...) default: ["c3.env" "C3_ENV"]
+ :ignore-errors [".*goog/i18n/bidi.js"] ;; optional - any error message matching any of these regex strings will be ignored
+ :ignore-console [] ;; optional - any console messages matching any of these regex strings will be ignored
+
+ ;; Build configuration for each environment, mostly ClojureScript compiler options: https://clojurescript.org/reference/compiler-options
+ :development {:cache-analysis true
+               :optimizations  :none
+               :output-dir     "resources/public/cljs"
+               :output-to      "resources/public/cljs/ttt_merlness_dev.js"
+               :pretty-print   true
+               :source-map     true
+               ;:sources        ["spec" "src"]
+               :sources        ["spec" "src/cljs"]
+               :specs          true                                   ;; Run speclj specs after compile
+               :verbose        false
+               :watch-fn       c3kit.scaffold.cljs/on-dev-compiled    ;; Callback to run speclj specs after each compile when in auto mode
+               }
+ :production  {
+               :cache-analysis false
+               :infer-externs  true
+               :libs           ["src/js/"]
+               :optimizations  :advanced
+               :output-dir     "target"
+               :output-to      "target/c3kit_scaffold.js"
+               :pretty-print   false
+               ;:pretty-print   true
+               ;:pseudo-names   true
+               :sources        ["src"]
+               :specs          false
+               :verbose        false
+               }
+ :staging     {
+               :cache-analysis false
+               :infer-externs  true
+               :libs           ["src/js/"]
+               :optimizations  :whitespace
+               :output-dir     "target/"
+               :output-to      "target/c3kit_scaffold.js"
+               :pretty-print   true
+               :pseudo-names   true
+               :sources        ["spec" "src"]
+               :specs          false
+               :verbose        false
+               }
+ }
+#_{:run-cmd     "phantomjs resources/public/specs/speclj.js"
  :development {:cache-analysis true
                :optimizations  :none
                :output-dir     "resources/public/cljs/"

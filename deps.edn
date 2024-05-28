@@ -1,0 +1,37 @@
+{:paths   ["src" "spec" "resources"]
+
+ :deps    {
+           org.clojure/clojure            {:mvn/version "1.11.3"}
+           cljsjs/react                   {:mvn/version "17.0.2-0"}
+           cljsjs/react-dom               {:mvn/version "17.0.2-0"}
+
+           org.clojure/clojurescript      {:mvn/version "1.11.132"}
+           com.cleancoders.c3kit/apron    {:mvn/version "2.1.3"}
+           com.cleancoders.c3kit/scaffold {:mvn/version "2.0.1"}
+           reagent/reagent                {:mvn/version "1.2.0"}
+           }
+
+ :aliases {
+           :cljs     {:main-opts ["-m" "c3kit.scaffold.cljs"]}
+           :dev      {:extra-deps {speclj/speclj "3.4.7"}
+                      :main-opts  ["-m" "ttt_clojure.main"]}
+
+           :test     {:extra-paths ["spec"]
+                      :extra-deps  {speclj/speclj {:mvn/version "3.4.6"}}
+                      :main-opts   ["-m" "speclj.main" "-c"]}
+           :coverage {:main-opts  ["-m" "cloverage.coverage" "-r" ":speclj" "--codecov" "-p" "src" "-s" "spec"]
+                      :extra-deps {cloverage/cloverage {:mvn/version "1.2.4"}}}
+
+           :run      {:main-opts ["-m" "ttt-clojure.main"]}
+           }
+ }
+;first complication
+;Could not locate c3kit/scaffold/cljs__init.class, c3kit/scaffold/cljs.clj or c3kit/scaffold/cljs.cljc on classpath.
+
+
+;second complication
+;manly files began downloading, but they stopped at
+;Downloading: com/cleancoders/c3kit/scaffold/2.0.2/scaffold-2.0.2.jar from clojars
+;Downloading: com/microsoft/playwright/driver-bundle/1.28.1/driver-bundle-1.28.1.jar from central
+;Execution error (ExceptionInfo) at c3kit.apron.util/read-edn-resource (util.clj:137).
+;Failed to read edn resource: config/cljs.edn

@@ -8,6 +8,9 @@
 
 (defn ^:export main []
   (println "Hello, from main!")
-  (rdom/render [components/hello-world] (js/document.getElementById "app")))
+  (let [app (js/document.getElementById "ttt_merlness_dev")]
+    (js-invoke js/console "log" app)
+    (rdom/render [components/hello-world] app)))
 
-(main)
+;(main)
+;how to get cljs into an html page
