@@ -1,40 +1,45 @@
 (ns sample-project.components
   (:require [reagent.core :as r]))
 
-(def click-count (r/atom 0))
-(defn create-initial-grid []
-  (vec (repeat 3 (vec (repeat 3 "Click me!")))))
+(defn create-initial-grid [size]
+  (vec (repeat (* size size) "")))
 
-(defonce grid-state (r/atom (create-initial-grid)))
+(defonce grid-state (r/atom (create-initial-grid 3)))
 
-(defn handle-click [row col]
-  (fn []
-    (swap! grid-state
-           (fn [grid]
-             (assoc-in grid [row col] "X")))))
+(defn update-grid [index]
+  (swap! grid-state assoc index "X"))
 
 (defn button [label on-click-fn]
-  [:input {:type "button"
-           :value label
+  [:input {:type     "button"
+           :value    label
            :on-click on-click-fn}])
 
-(defn render-row [row row-idx]
+(defn new-line [side index]
+  (when (= (dec side) (mod index side))
+    [:br]))
+
+(defn group-buttons [grid side index]
+  [:<>
+   [button (get grid index)
+    #(update-grid index)]
+   (new-line side index)])
+
+(defn make-grid [grid side]
   [:div
-   (for [col-idx (range (count row))]
-     ^{:key col-idx}
-     [button (get row col-idx)
-      (handle-click row-idx col-idx)])])
+   (for [index (range (count grid))]
+     ^{:key index}
+     [group-buttons grid side index])])
 
 (defn hello-world []
-  [:div.container
-   [:h1 "Welcome to Merl's Tic Tac Toe"]
-   (for [row-idx (range (count @grid-state))]
-     ^{:key row-idx}
-     [render-row (get @grid-state row-idx) row-idx])])
+  (let [side 3]
+    [:div.container
+     [:h1 "Welcome to Merl's Tic Tac Toe"]
+     [make-grid @grid-state side]]))
+
 
 #_(defn hello-world []
-  [:h1 "Hello, all!"
-   [:input {:type "button"
-            :value "Click me!"
-            :on-click "X"}]]
-  )
+    [:h1 "Hello, all!"
+     [:input {:type     "button"
+              :value    "Click me!"
+              :on-click "X"}]]
+    )

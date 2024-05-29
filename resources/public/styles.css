@@ -1,16 +1,6 @@
-body {
-    background-color: purple;
-    display: flex;
-    justify-content: center;
-    align-items: top;
-    height: 100vh;
-    margin: 0;
-}
 
-.container {
 
-    text-align: center;
-}
+
 
 button, input[type="button"] {
   width: 80px;
@@ -21,4 +11,13 @@ button, input[type="button"] {
   line-height: 80px;
   margin: 2px;
   border: 1px solid #000;
+}
+
+body {
+    background-color: white;
+    justify-content: center;
+}
+
+.container {
+    text-align: center;
 }
