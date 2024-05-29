@@ -6,13 +6,22 @@
 
 (defonce grid-state (r/atom (create-initial-grid 3)))
 
-(defn update-grid [index]
-  (swap! grid-state assoc index "X"))
+(defn count-tokens [grid]
+  (count (filter #(or (= % "X") (= % "O")) grid)))
 
-(defn button [label on-click-fn]
-  [:input {:type     "button"
-           :value    label
-           :on-click on-click-fn}])
+(defn next-token [grid]
+  (if (even? (count-tokens grid))
+    "X"
+    "O"))
+
+(defn update-grid [index]
+  (swap! grid-state assoc index (next-token @grid-state)))
+
+(defn button [value index on-click]
+  [:input {:id       (str "-my-button-" index)
+           :type     "button"
+           :value    value
+           :on-click on-click}])
 
 (defn new-line [side index]
   (when (= (dec side) (mod index side))
@@ -20,8 +29,7 @@
 
 (defn group-buttons [grid side index]
   [:<>
-   [button (get grid index)
-    #(update-grid index)]
+   [button (get grid index) index #(update-grid index)]
    (new-line side index)])
 
 (defn make-grid [grid side]
@@ -35,11 +43,3 @@
     [:div.container
      [:h1 "Welcome to Merl's Tic Tac Toe"]
      [make-grid @grid-state side]]))
-
-
-#_(defn hello-world []
-    [:h1 "Hello, all!"
-     [:input {:type     "button"
-              :value    "Click me!"
-              :on-click "X"}]]
-    )

@@ -1,5 +1,5 @@
 (ns sample-project.core-spec
-  (:require-macros [speclj.core :refer [describe it should= should-contain before-all]])
+  (:require-macros [speclj.core :refer [describe it should= should-contain before-all before should-not-be-nil]])
   (:require
     [reagent.core :as reagent]
     [reagent.dom :as rdom]
@@ -7,7 +7,7 @@
     [speclj.core]))
 
 (describe "hello-world component"
-  (before-all
+  (before
     (set! (.-innerHTML (.-body js/document)) "<div id=\"root\"></div>")
     (let [root (js-invoke js/document "getElementById" "root")]
       (rdom/render [sut/hello-world] root)))
@@ -24,13 +24,31 @@
       (should-contain "" (.-innerHTML buttons))))
 
   (it "updates button label on click"
-    (let [button (js-invoke js/document "querySelector" "input[type='button']")]
-      (should= "" (.-value button))
-      (.click button)
-      (should= "X" (.-value button))))
+    (let [id-button-0 (js-invoke js/document "querySelector" "#-my-button-0")
+          id-button-1 (js-invoke js/document "querySelector" "#-my-button-1")
+          id-button-2 (js-invoke js/document "querySelector" "#-my-button-2")
+          id-button-3 (js-invoke js/document "querySelector" "#-my-button-3")
+          id-button-4 (js-invoke js/document "querySelector" "#-my-button-4")
+          id-button-5 (js-invoke js/document "querySelector" "#-my-button-5")
+          id-button-6 (js-invoke js/document "querySelector" "#-my-button-6")
+          id-button-7 (js-invoke js/document "querySelector" "#-my-button-7")
+          id-button-8 (js-invoke js/document "querySelector" "#-my-button-8")]
+      (.click id-button-1)
+      (reagent/flush)
+      (should= "X" (.-value id-button-1))
+      (.click id-button-2)
+      (reagent/flush)
+      (should= "O" (.-value id-button-2))
+      (reagent/flush)
+      (should= "" (.-value id-button-0))
+      (should= "" (.-value id-button-3))
+      (should= "" (.-value id-button-4))
+      (should= "" (.-value id-button-5))
+      (should= "" (.-value id-button-6))
+      (should= "" (.-value id-button-7))
+      (should= "" (.-value id-button-8))))
 
   (it "checks if there are line breaks"
-    (let [container (js-invoke js/document "querySelector" ".container")]
-      (let [html (.-innerHTML container)]
-        (should-contain "<br>" html))))
+    (let [breaks (js-invoke js/document "querySelectorAll" ".container br")]
+      (should= 3 (count (seq breaks)))))
   )
